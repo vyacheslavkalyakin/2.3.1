@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<h1>Пользователи</h1>
+
+<!-- сама таблица -->
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Email</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">1</td>
+        <td th:text="${user.username}">username</td>
+        <td th:text="${user.password}">password</td>
+        <td th:text="${user.email}">email@example.com</td>
+        <td>
+            <!-- Удаление -->
+            <form th:action="@{/users/delete}" method="post" style="display:inline">
+                <input type="hidden" name="id" th:value="${user.id}" />
+                <button type="submit">Удалить</button>
+            </form>
+
+            <!-- Редактирование -->
+            <form th:action="@{/users/edit}" method="post" style="display:inline">
+                <input type="hidden" name="id" th:value="${user.id}" />
+                <input type="text" name="username" th:value="${user.username}" required />
+                <input type="text" name="password" th:value="${user.password}" required />
+                <input type="email" name="email" th:value="${user.email}" required />
+                <button type="submit">Изменить</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<hr/>
+
+<!-- добавления пользователя -->
+<h2>Добавить пользователя</h2>
+<form th:action="@{/users/add}" method="post">
+    <label>Username: <input type="text" name="username" required/></label><br/>
+    <label>Password: <input type="text" name="password" required/></label><br/>
+    <label>Email: <input type="email" name="email" required/></label><br/>
+    <button type="submit">Добавить</button>
+</form>
+
+</body>
+</html>
