@@ -21,7 +21,7 @@ public class UserController {
     @GetMapping
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
-        return "index";  // index.html в /WEB-INF/pages/
+        return "index";
     }
 
     @PostMapping("/add")
