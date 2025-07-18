@@ -9,4 +9,5 @@ public interface UserService {
     void updateUser(User user);
     void deleteUser(int id);
     User getUserById(int id);
+    void editUser(int id, String username, String password, String email);
 }

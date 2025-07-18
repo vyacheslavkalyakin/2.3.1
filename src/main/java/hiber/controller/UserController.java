@@ -34,20 +34,14 @@ public class UserController {
 
     @PostMapping("/delete")
     public String deleteUser(@RequestParam int id) {
-        userService.deleteUser((int) id);
+        userService.deleteUser( id);
         return "redirect:/users";
     }
 
     @PostMapping("/edit")
     public String editUser(@RequestParam int id, @RequestParam String username,
                            @RequestParam String password, @RequestParam String email) {
-        User user = userService.getUserById((int) id);
-        if (user != null) {
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setEmail(email);
-            userService.updateUser(user);
-        }
+        User user = userService.getUserById( id);
         return "redirect:/users";
     }
 }
